@@ -18,10 +18,15 @@
 # just 1 thread to run on
 export OMP_NUM_THREADS=1
 
+CC=gcc
 #GNU Compiler
 echo running program
 #Add compiler instructions here
+$CC ./memory_access.c -O3 -g2 -flto -o ./memory_access
+
 #Execute file here
+#./memory_access
+
 echo '-------'
 
 
