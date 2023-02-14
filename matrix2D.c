@@ -13,8 +13,9 @@ int n = 5;
 void assign(int** arr, int m, int n)
 {
     // Assign random values to the 2D array
-    for (int y = 0; y < m; y++) {
-        for (int x = 0; x < n; x++) {
+    int y, x;
+    for (y = 0; y < m; y++) {
+        for (x = 0; x < n; x++) {
             arr[y][x] = rand();
         }
     }
@@ -45,8 +46,9 @@ void _free(int** arr, int m, int n)
 void _add(int** arr1, int** arr2, int** arr3, int m, int n)
 {
     // Add two 2D arrays and store the results in a third one
-    for (int y = 0; y < m; y++) {
-        for (int x = 0; x < n; x++) {
+    int y, x;
+    for (y = 0; y < m; y++) {
+        for (x = 0; x < n; x++) {
             arr3[y][x] = arr1[y][x] + arr2[y][x];
         }
     }
