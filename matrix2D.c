@@ -4,15 +4,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
-// Test diffrent optmization options by changing m & n values, see how that effects the program performance
-
-int const m = 5;
-int const n = 5;
+// Test different optmization options by changing m & n values, see how that effects the program performance
+int m = 5;
+int n = 5;
 
 void assign(int** arr, int m, int n)
 {
     // Assign random values to the 2D array
+    for (int y = 0; y < m; y++) {
+        for (int x = 0; x < n; x++) {
+            arr[y][x] = rand();
+        }
+    }
 }
 
 void _print(int** arr, int m, int n)
@@ -40,11 +45,23 @@ void _free(int** arr, int m, int n)
 void _add(int** arr1, int** arr2, int** arr3, int m, int n)
 {
     // Add two 2D arrays and store the results in a third one
+    for (int y = 0; y < m; y++) {
+        for (int x = 0; x < n; x++) {
+            arr3[y][x] = arr1[y][x] + arr2[y][x];
+        }
+    }
 }
 
-int main(void)
+int main(int argc, char** argv)
 {
+    if (argc == 3) {
+        m = atoi(argv[1]);
+        n = atoi(argv[2]);
+    }
+    printf("m=%d n=%d\n", m, n);
+
     int r, i;
+    clock_t start_time, end_time;
 
     // dynamically create an array of pointers of size `m`
     int** arr1 = (int**)malloc(m * sizeof(int*));
@@ -65,7 +82,12 @@ int main(void)
 
     // arr3 = arr1 + arr2
     // add timer to count processing time for the _add function
+    start_time = clock();
     _add(arr1, arr2, arr3, m, n);
+    end_time = clock();
+
+    double total_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+    printf("_add took %fms\n", 1000.0 * (float)total_time);
 
     // print 2D array
     printf("First array:\n");
