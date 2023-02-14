@@ -25,7 +25,7 @@ echo running program
 $CC ./memory_access.c -O3 -g2 -flto -o ./memory_access
 
 #Execute file here
-#./memory_access
+./memory_access
 
 echo '-------'
 
